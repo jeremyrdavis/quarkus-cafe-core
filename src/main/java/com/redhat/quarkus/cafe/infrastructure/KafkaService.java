@@ -37,7 +37,11 @@ public class KafkaService {
                         cafeEvent.getOrderId().toString(),
                         jsonb.toJson(cafeEvent).toString());
                 System.out.println(record);
-                producer.write(record);
+                producer.send(record, res ->{
+                    if (res.failed()) {
+                        throw new RuntimeException(res.cause());
+                    }
+                });
             });
         });
 
