@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
 public class CafeTest {
@@ -17,13 +21,16 @@ public class CafeTest {
     Cafe cafe;
 
     @Test
-    public void testOrderInBeverageOnly() {
+    public void testOrderInBeverageOnly() throws ExecutionException, InterruptedException {
 
         List<Beverage> beverages = new ArrayList<>();
         List<Food> foods = new ArrayList<>();
 
-        CreateOrderCommand createOrderCommand = new CreateOrderCommand(UUID.randomUUID().toString(), Optional.of(beverages), Optional.of(foods));
-
+        beverages.add(new Beverage());
+        beverages.add(new Beverage());
+        CreateOrderCommand createOrderCommand = new CreateOrderCommand(UUID.randomUUID().toString(), beverages, foods);
         List<CafeEvent> cafeEvents = cafe.orderIn(createOrderCommand);
+        assertNotNull(cafeEvents);
+        assertEquals(2, cafeEvents.size());
     }
 }

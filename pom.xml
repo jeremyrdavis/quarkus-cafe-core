@@ -51,7 +51,6 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
-      <version>${quarkus.version}</version>
     </dependency>
     <!-- Testing -->
     <dependency>
