@@ -10,4 +10,20 @@ public class KitchenOrderInEvent implements CafeEvent {
         this.orderId = orderId;
         this.food = food;
     }
+
+    @Override
+    public String getOrderId() {
+        return this.orderId;
+    }
+
+    @Override
+    public String getItem() {
+        return this.food.type.toString();
+    }
+
+    @Override
+    public CafeEventType getEventType() {
+        return CafeEventType.KITCHEN;
+    }
+
 }
