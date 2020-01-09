@@ -48,7 +48,7 @@ public class RestResourceTest {
                 .contentType(ContentType.JSON)
                 .when().post("/order")
                 .then()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_ACCEPTED);
     }
 
 }

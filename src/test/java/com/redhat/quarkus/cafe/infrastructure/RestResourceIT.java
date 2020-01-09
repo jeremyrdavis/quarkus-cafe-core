@@ -41,7 +41,7 @@ public class RestResourceIT extends BaseTestContainersIT{
                 .contentType(ContentType.JSON)
                 .when().post("/order")
                 .then()
-                .statusCode(HttpStatus.SC_OK);
+                .statusCode(HttpStatus.SC_ACCEPTED);
 
         ConsumerRecords<String, String> newRecords = kafkaConsumer.poll(Duration.ofMillis(10000));
         assertNotNull(newRecords);
