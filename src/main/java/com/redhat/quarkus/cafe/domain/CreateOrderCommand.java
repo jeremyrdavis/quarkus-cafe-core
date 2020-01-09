@@ -21,8 +21,8 @@ public class CreateOrderCommand {
 
     public CreateOrderCommand(String id, List<Beverage> beverages, List<Food> foods) {
         this.id = id;
-        this.beverages = Optional.of(beverages);
-        this.foods = Optional.of(foods);
+        this.beverages = Optional.ofNullable(beverages);
+        this.foods = Optional.ofNullable(foods);
     }
 
     public void addBeverages(List<Beverage> beverageList) {
