@@ -21,7 +21,7 @@ public class Cafe {
     KafkaService kafkaService;
 
     //TODO Create and persist an Order
-    public CompletableFuture<CreateOrderCommand> orderIn(CreateOrderCommand createOrderCommand) {
+    public CompletableFuture<List<CafeEvent>> orderIn(CreateOrderCommand createOrderCommand) {
 
         List<CafeEvent> allEvents = new ArrayList<>();
         createOrderCommand.beverages.ifPresent(beverages -> {
@@ -32,7 +32,7 @@ public class Cafe {
         });
 
         return kafkaService.produce(allEvents).thenApply(v -> {
-            return createOrderCommand;
+            return allEvents;
         });
     }
 }

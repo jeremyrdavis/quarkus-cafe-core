@@ -20,7 +20,6 @@ public class CafeTest {
     @Inject
     Cafe cafe;
 
-/*
     @Test
     public void testOrderInBeverageOnly() throws ExecutionException, InterruptedException {
 
@@ -80,5 +79,4 @@ public class CafeTest {
             return null;
         });
     }
-*/
 }
