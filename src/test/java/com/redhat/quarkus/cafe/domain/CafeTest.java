@@ -51,4 +51,22 @@ public class CafeTest {
             assertEquals(KitchenOrderInEvent.class, e.getClass());
         });
     }
+
+    @Test
+    public void testOrderInBeveragesAndFood() {
+
+        List<Food> foods = new ArrayList<>();
+        foods.add(new Food(Food.Type.MUFFIN));
+        foods.add(new Food(Food.Type.CAKEPOP));
+        List<Beverage> beverages = new ArrayList<>();
+        beverages.add(new Beverage(Beverage.Type.CAPUCCINO));
+        beverages.add(new Beverage(Beverage.Type.COFFEE_BLACK));
+
+        CreateOrderCommand createOrderCommand = new CreateOrderCommand(UUID.randomUUID().toString(), beverages, foods);
+        List<CafeEvent> cafeEvents = cafe.orderIn(createOrderCommand);
+        assertNotNull(cafeEvents);
+        assertEquals(4, cafeEvents.size());
+        assertEquals(2, cafeEvents.stream().filter(e -> e.getClass().equals(BeverageOrderInEvent.class)).count());
+        assertEquals(2, cafeEvents.stream().filter(e -> e.getClass().equals(KitchenOrderInEvent.class)).count());
+    }
 }
